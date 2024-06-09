@@ -1,7 +1,6 @@
 package ca.spottedleaf.starlight.mixin.common.blockstate;
 
 import ca.spottedleaf.starlight.common.blockstate.ExtendedAbstractBlockState;
-import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -15,6 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectArrayMap;
 
 @Mixin(BlockBehaviour.BlockStateBase.class)
 public abstract class BlockStateBaseMixin extends StateHolder<Block, BlockState> implements ExtendedAbstractBlockState {
@@ -36,8 +36,8 @@ public abstract class BlockStateBaseMixin extends StateHolder<Block, BlockState>
     @Unique
     private boolean isConditionallyFullOpaque;
 
-    protected BlockStateBaseMixin(final Block object, final ImmutableMap<Property<?>, Comparable<?>> immutableMap, final MapCodec<BlockState> mapCodec) {
-        super(object, immutableMap, mapCodec);
+    protected BlockStateBaseMixin(final Block object, final Reference2ObjectArrayMap<Property<?>, Comparable<?>> immutableMap, final MapCodec<BlockState> mapCodec) {
+	super(object, immutableMap, mapCodec);
     }
 
     /**
